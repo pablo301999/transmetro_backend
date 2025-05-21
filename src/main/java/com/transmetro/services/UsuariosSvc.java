@@ -5,7 +5,7 @@
  */
 package com.transmetro.services;
 
-import com.transmetro.models.Lineas;
+import com.transmetro.models.Usuarios;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,15 +13,15 @@ import java.util.Optional;
  *
  * @author Pablo
  */
-public interface LineasSvc {
+public interface UsuariosSvc {
 
-    List<Lineas> obtenerTodas();
+    Usuarios crearUsuario(Usuarios usuario);
 
-    Optional<Lineas> obtenerPorId(Integer id);
+    Optional<Usuarios> buscarPorId(Long id);
 
-    Lineas crear(Lineas linea);
+    List<Usuarios> listar();
 
-    Optional<Lineas> actualizar(Integer id, Lineas datos);
+    void eliminar(Long id);
 
-    boolean eliminar(Integer id);
+    Usuarios actualizar(Long id, Usuarios datos);
 }

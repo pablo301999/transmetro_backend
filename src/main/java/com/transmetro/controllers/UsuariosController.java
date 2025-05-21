@@ -6,9 +6,8 @@
 package com.transmetro.controllers;
 
 import com.transmetro.models.Usuarios;
-import com.transmetro.repositories.UsuariosRepository;
+import com.transmetro.services.UsuariosSvc;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,48 +30,34 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsuariosController {
 
     @Autowired
-    private UsuariosRepository usuariosRepository;
+    private UsuariosSvc usuariosSvc;
+
+    @PostMapping
+    public ResponseEntity<Usuarios> crear(@RequestBody Usuarios usuario) {
+        Usuarios nuevo = usuariosSvc.crearUsuario(usuario);
+        return ResponseEntity.ok(nuevo);
+    }
 
     @GetMapping
-    public List<Usuarios> obtenerTodos() {
-        return usuariosRepository.findAll();
+    public ResponseEntity<List<Usuarios>> listar() {
+        return ResponseEntity.ok(usuariosSvc.listar());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Usuarios> obtenerPorId(@PathVariable Long id) {
-        Optional<Usuarios> usuario = usuariosRepository.findById(id);
-        return usuario.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
-    @PostMapping
-    public ResponseEntity<Usuarios> crear(@RequestBody Usuarios usuario) {
-        Usuarios nuevo = usuariosRepository.save(usuario);
-        return ResponseEntity.ok(nuevo);
+        return usuariosSvc.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Usuarios> actualizar(@PathVariable Long id, @RequestBody Usuarios datos) {
-        return usuariosRepository.findById(id)
-                .map(u -> {
-                    u.setNombreCompleto(datos.getNombreCompleto());
-                    u.setCorreo(datos.getCorreo());
-                    u.setNumeroEmpleado(datos.getNumeroEmpleado());
-                    u.setRol(datos.getRol());
-                    u.setContraseña(datos.getContraseña());
-                    u.setEstado(datos.getEstado());
-                    usuariosRepository.save(u);
-                    return ResponseEntity.ok(u);
-                }).orElseGet(() -> ResponseEntity.notFound().build());
+        return ResponseEntity.ok(usuariosSvc.actualizar(id, datos));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id) {
-        if (usuariosRepository.existsById(id)) {
-            usuariosRepository.deleteById(id);
-            return ResponseEntity.ok().build();
-        }
-        return ResponseEntity.notFound().build();
+        usuariosSvc.eliminar(id);
+        return ResponseEntity.noContent().build();
     }
-
 }

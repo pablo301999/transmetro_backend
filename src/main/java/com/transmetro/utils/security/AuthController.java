@@ -1,54 +1,40 @@
 package com.transmetro.utils.security;
 
+import com.transmetro.dto.LoginRequest;
+import com.transmetro.dto.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.transmetro.models.Empleado;
-import com.transmetro.models.Rol;
-import java.util.Set;
-import java.util.stream.Collectors;
+import com.transmetro.models.Usuarios;
+import com.transmetro.services.AuthenticationService;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
+@RequestMapping("/auth")
+@CrossOrigin(origins = "*")
 public class AuthController {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private AuthenticationService authenticationService;
 
     @Autowired
     private JwtUtil jwtUtil;
 
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        Authentication authentication = authenticationService.autenticar(
+            loginRequest.getCorreo(),
+            loginRequest.getContrasenia()
+        );
 
-    @PostMapping("/authenticate")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthRequest authenticationRequest) throws Exception {
-        try {
-            authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
-            );
-        } catch (BadCredentialsException e) {
-            throw new Exception("Usuario o contraseña incorrecta", e);
-        }
+        UsuarioDetails usuarioDetails = (UsuarioDetails) authentication.getPrincipal();
+        Usuarios u = usuarioDetails.getUsuarioEntity();
+        String token = jwtUtil.generateToken(u.getCorreo());
 
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-        Empleado empleado = userDetailsService.getEmpleadoByUsername(authenticationRequest.getUsername());
-
-        System.out.println("usurio del empleado: " + empleado.getUsuario());
-
-        final String jwt = jwtUtil.generateTokenWithUserDetails(userDetails, empleado.getUsuario(), obtenerRoles(empleado), empleado.getCorreo());
-
-        AuthResponse authResponse = new AuthResponse(jwt, empleado.getUsuario(), obtenerRoles(empleado));
-
-        return ResponseEntity.ok(authResponse);
-    }
-
-    private Set<String> obtenerRoles(Empleado empleado) {
-        return empleado.getRoles().stream().map(Rol::getNombre).collect(Collectors.toSet());
+        return ResponseEntity.ok(new LoginResponse(token, u.getNombreCompleto(), u.getRol()));
     }
 }

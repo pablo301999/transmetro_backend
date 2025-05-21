@@ -3,16 +3,14 @@ package com.transmetro.utils.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -20,46 +18,30 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private UsuarioDetailsService userDetailsService;
 
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        System.out.println("Configuración de seguridad aplicada: " + http);
-
         http.csrf().disable()
                 .cors()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/authenticate").permitAll()
-                .antMatchers("/accesos/**").permitAll()
-                .antMatchers("/buses/**").permitAll()
-                .antMatchers("/distancias/**").permitAll()
-                .antMatchers("/estaciones/**").permitAll()
-                .antMatchers("/estaciones-lineas/**").permitAll()
-                .antMatchers("/guardias/**").permitAll()
-                .antMatchers("/lineas/**").permitAll()
-                .antMatchers("/parqueos/**").permitAll()
-                .antMatchers("/pilotos/**").permitAll()
+                .antMatchers("/auth/login").permitAll()
+                .antMatchers("/usuarios/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-        FilterSecurityInterceptor filterSecurityInterceptor = http.getSharedObject(FilterSecurityInterceptor.class);
-        if (filterSecurityInterceptor != null) {
-            System.out.println("Configuración de autorización aplicada: " + filterSecurityInterceptor.getSecurityMetadataSource());
-        }
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
     }
 
     @Bean
@@ -67,18 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
     @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers(
-                "/v2/api-docs",
-                "/swagger-resources",
-                "/swagger-resources/**",
-                "/configuration/ui",
-                "/configuration/security",
-                "/swagger-ui.html",
-                "/webjars/**",
-                "/v3/api-docs/**",
-                "/swagger-ui/**"
-        );
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 }

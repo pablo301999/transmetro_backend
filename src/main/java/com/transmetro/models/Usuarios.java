@@ -39,7 +39,7 @@ public class Usuarios implements Serializable{
     private String rol;
 
     @Column(nullable = false, length = 255)
-    private String contraseña;
+    private String contrasenia;
 
     private Boolean estado = true;
 
@@ -83,12 +83,12 @@ public class Usuarios implements Serializable{
         this.rol = rol;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContraseña(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public Boolean getEstado() {

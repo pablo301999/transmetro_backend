@@ -6,6 +6,7 @@
 package com.transmetro.repositories;
 
 import com.transmetro.models.Usuarios;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -20,5 +21,6 @@ public interface UsuariosRepository extends JpaRepository<Usuarios, Long> {
 
     boolean existsByNumeroEmpleado(String numeroEmpleado);
 
-}
+    Optional<Usuarios> findByCorreo(String correo);
 
+}
