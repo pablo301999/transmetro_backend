@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "buses", schema = "transmetro")
 public class Buses implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_bus")
@@ -29,9 +29,16 @@ public class Buses implements Serializable {
     @Column(name = "numero_bus", nullable = false, unique = true, length = 10)
     private String numeroBus;
 
-    @Column(nullable = false)
+    @Column(name = "capacidad", nullable = false)
     private Integer capacidad;
 
+    @Column(name = "id_linea", nullable = false)
+    private Integer idLinea;
+
+    @Column(name = "id_parqueo", nullable = false)
+    private Integer idParqueo;
+
+    @Column(name = "activo", nullable = false)
     private Boolean activo = true;
 
     public Long getIdBus() {
@@ -65,6 +72,21 @@ public class Buses implements Serializable {
     public void setActivo(Boolean activo) {
         this.activo = activo;
     }
-    
-    
+
+    public Integer getIdLinea() {
+        return idLinea;
+    }
+
+    public void setIdLinea(Integer idLinea) {
+        this.idLinea = idLinea;
+    }
+
+    public Integer getIdParqueo() {
+        return idParqueo;
+    }
+
+    public void setIdParqueo(Integer idParqueo) {
+        this.idParqueo = idParqueo;
+    }
+
 }

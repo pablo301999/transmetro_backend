@@ -6,7 +6,7 @@
 package com.transmetro.repositories;
 
 import com.transmetro.models.Buses;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,6 +14,5 @@ import org.springframework.stereotype.Repository;
  * @author Pablo
  */
 @Repository
-public interface BusesRepository extends CrudRepository<Buses, Object> {
-    
+public interface BusesRepository extends JpaRepository<Buses, Integer> {
 }

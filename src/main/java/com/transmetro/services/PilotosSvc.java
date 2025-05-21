@@ -5,13 +5,23 @@
  */
 package com.transmetro.services;
 
-import com.transmetro.commons.CommonSvc;
 import com.transmetro.models.Pilotos;
+import java.util.List;
+import java.util.Optional;
 
 /**
  *
  * @author Pablo
  */
-public interface PilotosSvc extends CommonSvc<Pilotos> {
-    
+public interface PilotosSvc {
+
+    List<Pilotos> obtenerTodos();
+
+    Optional<Pilotos> obtenerPorId(Integer id);
+
+    Pilotos crear(Pilotos piloto);
+
+    Optional<Pilotos> actualizar(Integer id, Pilotos datos);
+
+    boolean eliminar(Integer id);
 }

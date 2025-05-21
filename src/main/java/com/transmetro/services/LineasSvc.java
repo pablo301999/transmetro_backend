@@ -5,13 +5,18 @@
  */
 package com.transmetro.services;
 
-import com.transmetro.commons.CommonSvc;
 import com.transmetro.models.Lineas;
+import java.util.List;
+import java.util.Optional;
 
 /**
  *
  * @author Pablo
  */
-public interface LineasSvc extends CommonSvc<Lineas>{
-    
+public interface LineasSvc {
+    List<Lineas> obtenerTodas();
+    Optional<Lineas> obtenerPorId(Integer id);
+    Lineas crear(Lineas linea);
+    Optional<Lineas> actualizar(Integer id, Lineas datos);
+    boolean eliminar(Integer id);
 }

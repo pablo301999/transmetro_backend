@@ -6,7 +6,8 @@
 package com.transmetro.repositories;
 
 import com.transmetro.models.EstacionesLineas;
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Repository;
  * @author Pablo
  */
 @Repository
-public interface EstacionesLineasRepository extends CrudRepository<EstacionesLineas, Object> {
-    
+public interface EstacionesLineasRepository extends JpaRepository<EstacionesLineas, Integer> {
+
+    List<EstacionesLineas> findByIdLinea(Integer idLinea);
 }

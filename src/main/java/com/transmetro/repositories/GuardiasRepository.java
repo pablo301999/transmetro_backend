@@ -6,7 +6,7 @@
 package com.transmetro.repositories;
 
 import com.transmetro.models.Guardias;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,6 +14,5 @@ import org.springframework.stereotype.Repository;
  * @author Pablo
  */
 @Repository
-public interface GuardiasRepository extends CrudRepository<Guardias, Object> {
-    
+public interface GuardiasRepository extends JpaRepository<Guardias, Integer> {
 }

@@ -5,13 +5,23 @@
  */
 package com.transmetro.services;
 
-import com.transmetro.commons.CommonSvc;
 import com.transmetro.models.Buses;
+import java.util.List;
+import java.util.Optional;
 
 /**
  *
  * @author Pablo
  */
-public interface BusesSvc extends CommonSvc<Buses> {
-    
+public interface BusesSvc {
+
+    List<Buses> obtenerTodos();
+
+    Optional<Buses> obtenerPorId(Integer id);
+
+    Buses crear(Buses bus);
+
+    Optional<Buses> actualizar(Integer id, Buses datos);
+
+    boolean eliminar(Integer id);
 }

@@ -5,10 +5,18 @@
  */
 package com.transmetro.controllers;
 
-import com.transmetro.commons.CommonController;
 import com.transmetro.models.Estaciones;
 import com.transmetro.services.EstacionesSvc;
-import com.transmetro.validator.EstacionesValidator;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +24,40 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Pablo
  */
-@RequestMapping("/estaciones")
 @RestController
-public class EstacionesController extends CommonController<Estaciones, EstacionesSvc, EstacionesValidator> {
-    
+@RequestMapping("/estaciones")
+@CrossOrigin(origins = "*")
+public class EstacionesController {
+
+    @Autowired
+    private EstacionesSvc estacionesSvc;
+
+    @GetMapping
+    public List<Estaciones> obtenerTodas() {
+        return estacionesSvc.obtenerTodas();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Estaciones> obtenerPorId(@PathVariable Integer id) {
+        return estacionesSvc.obtenerPorId(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<Estaciones> crear(@RequestBody Estaciones estacion) {
+        return ResponseEntity.ok(estacionesSvc.crear(estacion));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Estaciones> actualizar(@PathVariable Integer id, @RequestBody Estaciones datos) {
+        return estacionesSvc.actualizar(id, datos)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminar(@PathVariable Integer id) {
+        return estacionesSvc.eliminar(id) ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    }
 }

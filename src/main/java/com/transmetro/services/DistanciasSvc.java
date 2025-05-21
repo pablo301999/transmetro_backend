@@ -5,13 +5,23 @@
  */
 package com.transmetro.services;
 
-import com.transmetro.commons.CommonSvc;
 import com.transmetro.models.Distancias;
+import java.util.List;
+import java.util.Optional;
 
 /**
  *
  * @author Pablo
  */
-public interface DistanciasSvc extends CommonSvc<Distancias> {
-    
+public interface DistanciasSvc {
+
+    List<Distancias> obtenerTodas();
+
+    Optional<Distancias> obtenerPorId(Integer id);
+
+    Distancias crear(Distancias distancia);
+
+    Optional<Distancias> actualizar(Integer id, Distancias datos);
+
+    boolean eliminar(Integer id);
 }

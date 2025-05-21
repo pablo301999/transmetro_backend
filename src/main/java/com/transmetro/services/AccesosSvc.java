@@ -5,13 +5,23 @@
  */
 package com.transmetro.services;
 
-import com.transmetro.commons.CommonSvc;
 import com.transmetro.models.Accesos;
+import java.util.List;
+import java.util.Optional;
 
 /**
  *
  * @author Pablo
  */
-public interface AccesosSvc extends CommonSvc<Accesos> {
-    
+public interface AccesosSvc {
+
+    List<Accesos> obtenerTodos();
+
+    Optional<Accesos> obtenerPorId(Integer id);
+
+    Accesos crear(Accesos acceso);
+
+    Optional<Accesos> actualizar(Integer id, Accesos datos);
+
+    boolean eliminar(Integer id);
 }

@@ -26,6 +26,12 @@ public class Distancias implements Serializable {
     @Column(name = "id_distancia")
     private Long idDistancia;
 
+    @Column(name = "id_distancia_origen")
+    private Integer idEstacionOrigen;
+
+    @Column(name = "id_distancia_destino")
+    private Integer idEstacionDestino;
+
     @Column(name = "distancia_km", precision = 5, scale = 2)
     private Double distanciaKm;
 
@@ -43,6 +49,22 @@ public class Distancias implements Serializable {
 
     public void setDistanciaKm(Double distanciaKm) {
         this.distanciaKm = distanciaKm;
+    }
+
+    public Integer getIdEstacionOrigen() {
+        return idEstacionOrigen;
+    }
+
+    public void setIdEstacionOrigen(Integer idEstacionOrigen) {
+        this.idEstacionOrigen = idEstacionOrigen;
+    }
+
+    public Integer getIdEstacionDestino() {
+        return idEstacionDestino;
+    }
+
+    public void setIdEstacionDestino(Integer idEstacionDestino) {
+        this.idEstacionDestino = idEstacionDestino;
     }
 
 }

@@ -5,9 +5,8 @@
  */
 package com.transmetro.repositories;
 
-import com.transmetro.models.Lineas;
+import com.transmetro.models.Usuarios;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,5 +14,11 @@ import org.springframework.stereotype.Repository;
  * @author Pablo
  */
 @Repository
-public interface LineasRepository extends JpaRepository<Lineas, Integer> {
+public interface UsuariosRepository extends JpaRepository<Usuarios, Long> {
+
+    boolean existsByCorreo(String correo);
+
+    boolean existsByNumeroEmpleado(String numeroEmpleado);
+
 }
+

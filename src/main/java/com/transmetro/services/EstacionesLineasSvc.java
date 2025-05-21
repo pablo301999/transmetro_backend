@@ -5,13 +5,25 @@
  */
 package com.transmetro.services;
 
-import com.transmetro.commons.CommonSvc;
 import com.transmetro.models.EstacionesLineas;
+import java.util.List;
+import java.util.Optional;
 
 /**
  *
  * @author Pablo
  */
-public interface EstacionesLineasSvc extends CommonSvc<EstacionesLineas> {
-    
+public interface EstacionesLineasSvc {
+
+    List<EstacionesLineas> obtenerTodas();
+
+    Optional<EstacionesLineas> obtenerPorId(Integer id);
+
+    EstacionesLineas crear(EstacionesLineas relacion);
+
+    Optional<EstacionesLineas> actualizar(Integer id, EstacionesLineas datos);
+
+    boolean eliminar(Integer id);
+
+    List<EstacionesLineas> obtenerPorLinea(Integer idLinea);
 }

@@ -5,10 +5,12 @@
  */
 package com.transmetro.services.impl;
 
-import com.transmetro.commons.CommonSvcImpl;
 import com.transmetro.models.Accesos;
 import com.transmetro.repositories.AccesosRepository;
 import com.transmetro.services.AccesosSvc;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,6 +18,42 @@ import org.springframework.stereotype.Service;
  * @author Pablo
  */
 @Service
-public class AccesosSvcImpl extends CommonSvcImpl<Accesos, AccesosRepository> implements AccesosSvc {
-    
+public class AccesosSvcImpl implements AccesosSvc {
+
+    @Autowired
+    private AccesosRepository accesosRepository;
+
+    @Override
+    public List<Accesos> obtenerTodos() {
+        return accesosRepository.findAll();
+    }
+
+    @Override
+    public Optional<Accesos> obtenerPorId(Integer id) {
+        return accesosRepository.findById(id);
+    }
+
+    @Override
+    public Accesos crear(Accesos acceso) {
+        return accesosRepository.save(acceso);
+    }
+
+    @Override
+    public Optional<Accesos> actualizar(Integer id, Accesos datos) {
+        return accesosRepository.findById(id).map(a -> {
+            a.setIdEstacion(datos.getIdEstacion());
+            a.setDescripcion(datos.getDescripcion());
+            a.setEstado(datos.getEstado());
+            return accesosRepository.save(a);
+        });
+    }
+
+    @Override
+    public boolean eliminar(Integer id) {
+        if (accesosRepository.existsById(id)) {
+            accesosRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 }

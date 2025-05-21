@@ -5,10 +5,18 @@
  */
 package com.transmetro.controllers;
 
-import com.transmetro.commons.CommonController;
 import com.transmetro.models.Lineas;
 import com.transmetro.services.LineasSvc;
-import com.transmetro.validator.LineasValidator;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +24,40 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Pablo
  */
-@RequestMapping("/lineas")
 @RestController
-public class LineasController extends CommonController<Lineas, LineasSvc, LineasValidator> {
-    
+@RequestMapping("/lineas")
+@CrossOrigin(origins = "*")
+public class LineasController {
+
+    @Autowired
+    private LineasSvc lineasSvc;
+
+    @GetMapping
+    public List<Lineas> obtenerTodas() {
+        return lineasSvc.obtenerTodas();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Lineas> obtenerPorId(@PathVariable Integer id) {
+        return lineasSvc.obtenerPorId(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<Lineas> crear(@RequestBody Lineas linea) {
+        return ResponseEntity.ok(lineasSvc.crear(linea));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Lineas> actualizar(@PathVariable Integer id, @RequestBody Lineas datos) {
+        return lineasSvc.actualizar(id, datos)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminar(@PathVariable Integer id) {
+        return lineasSvc.eliminar(id) ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    }
 }

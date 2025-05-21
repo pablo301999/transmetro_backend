@@ -5,13 +5,23 @@
  */
 package com.transmetro.services;
 
-import com.transmetro.commons.CommonSvc;
 import com.transmetro.models.Guardias;
+import java.util.List;
+import java.util.Optional;
 
 /**
  *
  * @author Pablo
  */
-public interface GuardiasSvc extends CommonSvc<Guardias> {
-    
+public interface GuardiasSvc {
+
+    List<Guardias> obtenerTodos();
+
+    Optional<Guardias> obtenerPorId(Integer id);
+
+    Guardias crear(Guardias guardia);
+
+    Optional<Guardias> actualizar(Integer id, Guardias datos);
+
+    boolean eliminar(Integer id);
 }

@@ -5,13 +5,23 @@
  */
 package com.transmetro.services;
 
-import com.transmetro.commons.CommonSvc;
 import com.transmetro.models.Parqueos;
+import java.util.List;
+import java.util.Optional;
 
 /**
  *
  * @author Pablo
  */
-public interface ParqueosSvc extends CommonSvc<Parqueos> {
-    
+public interface ParqueosSvc {
+
+    List<Parqueos> obtenerTodos();
+
+    Optional<Parqueos> obtenerPorId(Integer id);
+
+    Parqueos crear(Parqueos parqueo);
+
+    Optional<Parqueos> actualizar(Integer id, Parqueos datos);
+
+    boolean eliminar(Integer id);
 }

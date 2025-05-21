@@ -31,6 +31,9 @@ public class Guardias implements Serializable {
 
     private String turno;
 
+    @Column(name = "id_acceso",nullable = false)
+    private Integer idAcceso;
+
     public Long getIdGuardia() {
         return idGuardia;
     }
@@ -55,4 +58,13 @@ public class Guardias implements Serializable {
         this.turno = turno;
     }
 
+    public Integer getIdAcceso() {
+        return idAcceso;
+    }
+
+    public void setIdAcceso(Integer idAcceso) {
+        this.idAcceso = idAcceso;
+    }
+
+    
 }

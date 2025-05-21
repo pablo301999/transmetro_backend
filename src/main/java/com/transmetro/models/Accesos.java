@@ -31,6 +31,9 @@ public class Accesos implements Serializable {
 
     private Boolean estado = true;
 
+    @Column(nullable = false)
+    private Integer idEstacion;
+
     public Long getIdAcceso() {
         return idAcceso;
     }
@@ -54,6 +57,13 @@ public class Accesos implements Serializable {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
-    
-    
+
+    public Integer getIdEstacion() {
+        return idEstacion;
+    }
+
+    public void setIdEstacion(Integer idEstacion) {
+        this.idEstacion = idEstacion;
+    }
+
 }
