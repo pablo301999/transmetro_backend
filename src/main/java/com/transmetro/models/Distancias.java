@@ -26,10 +26,10 @@ public class Distancias implements Serializable {
     @Column(name = "id_distancia")
     private Long idDistancia;
 
-    @Column(name = "id_distancia_origen")
+    @Column(name = "id_estacion_origen")
     private Integer idEstacionOrigen;
 
-    @Column(name = "id_distancia_destino")
+    @Column(name = "id_estacion_destino")
     private Integer idEstacionDestino;
 
     @Column(name = "distancia_km", precision = 5, scale = 2)
