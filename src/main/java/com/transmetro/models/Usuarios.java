@@ -19,7 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "usuarios", schema = "transmetro")
-public class Usuarios implements Serializable{
+public class Usuarios implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,6 +42,9 @@ public class Usuarios implements Serializable{
     private String contrasenia;
 
     private Boolean estado = true;
+
+    @Column(nullable = false, length = 50)
+    private String usuario;
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -99,5 +102,12 @@ public class Usuarios implements Serializable{
         this.estado = estado;
     }
 
-    
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
 }

@@ -58,6 +58,7 @@ public class UsuariosSvcImpl implements UsuariosSvc {
             usuario.setNumeroEmpleado(datos.getNumeroEmpleado());
             usuario.setRol(datos.getRol());
             usuario.setEstado(datos.getEstado());
+            usuario.setUsuario(datos.getUsuario());
 
             if (datos.getContrasenia() != null && !datos.getContrasenia().isEmpty()) {
                 usuario.setContraseña(passwordEncoder.encode(datos.getContrasenia()));

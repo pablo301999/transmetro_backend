@@ -26,9 +26,9 @@ public class AuthenticationService {
         this.authenticationManager = authenticationManager;
     }
 
-    public Authentication autenticar(String correo, String contrasenia) {
+    public Authentication autenticar(String usuario, String contrasenia) {
         return authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(correo, contrasenia)
+            new UsernamePasswordAuthenticationToken(usuario, contrasenia)
         );
     }
 }

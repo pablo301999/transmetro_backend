@@ -30,7 +30,7 @@ public class UsuarioDetails implements UserDetails {
     }
 
     @Override public String getPassword() { return usuario.getContrasenia(); }
-    @Override public String getUsername() { return usuario.getCorreo(); }
+    @Override public String getUsername() { return usuario.getUsuario(); }
     @Override public boolean isAccountNonExpired() { return true; }
     @Override public boolean isAccountNonLocked() { return true; }
     @Override public boolean isCredentialsNonExpired() { return true; }

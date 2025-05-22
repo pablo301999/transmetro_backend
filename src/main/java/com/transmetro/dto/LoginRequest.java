@@ -10,15 +10,15 @@ package com.transmetro.dto;
  * @author Pablo
  */
 public class LoginRequest {
-    private String correo;
+    private String usuario;
     private String contrasenia;
 
-    public String getCorreo() {
-        return correo;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getContrasenia() {

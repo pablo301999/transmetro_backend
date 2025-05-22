@@ -27,13 +27,13 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationService.autenticar(
-            loginRequest.getCorreo(),
+            loginRequest.getUsuario(),
             loginRequest.getContrasenia()
         );
 
         UsuarioDetails usuarioDetails = (UsuarioDetails) authentication.getPrincipal();
         Usuarios u = usuarioDetails.getUsuarioEntity();
-        String token = jwtUtil.generateToken(u.getCorreo());
+        String token = jwtUtil.generateToken(u.getUsuario());
 
         return ResponseEntity.ok(new LoginResponse(token, u.getNombreCompleto(), u.getRol()));
     }
