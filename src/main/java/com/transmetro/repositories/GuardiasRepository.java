@@ -14,5 +14,5 @@ import org.springframework.stereotype.Repository;
  * @author Pablo
  */
 @Repository
-public interface GuardiasRepository extends JpaRepository<Guardias, Integer> {
+public interface GuardiasRepository extends JpaRepository<Guardias, Long> {
 }

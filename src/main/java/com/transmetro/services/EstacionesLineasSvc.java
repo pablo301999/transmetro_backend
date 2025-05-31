@@ -17,13 +17,13 @@ public interface EstacionesLineasSvc {
 
     List<EstacionesLineas> obtenerTodas();
 
-    Optional<EstacionesLineas> obtenerPorId(Integer id);
+    Optional<EstacionesLineas> obtenerPorId(Long id);
 
     EstacionesLineas crear(EstacionesLineas relacion);
 
-    Optional<EstacionesLineas> actualizar(Integer id, EstacionesLineas datos);
+    Optional<EstacionesLineas> actualizar(Long id, EstacionesLineas datos);
 
-    boolean eliminar(Integer id);
+    boolean eliminar(Long id);
 
     List<EstacionesLineas> obtenerPorLinea(Integer idLinea);
 }

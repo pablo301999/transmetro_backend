@@ -29,7 +29,7 @@ public class BusesSvcImpl implements BusesSvc {
     }
 
     @Override
-    public Optional<Buses> obtenerPorId(Integer id) {
+    public Optional<Buses> obtenerPorId(Long id) {
         return busesRepository.findById(id);
     }
 
@@ -39,7 +39,7 @@ public class BusesSvcImpl implements BusesSvc {
     }
 
     @Override
-    public Optional<Buses> actualizar(Integer id, Buses datos) {
+    public Optional<Buses> actualizar(Long id, Buses datos) {
         return busesRepository.findById(id).map(b -> {
             b.setNumeroBus(datos.getNumeroBus());
             b.setCapacidad(datos.getCapacidad());
@@ -51,7 +51,7 @@ public class BusesSvcImpl implements BusesSvc {
     }
 
     @Override
-    public boolean eliminar(Integer id) {
+    public boolean eliminar(Long id) {
         if (busesRepository.existsById(id)) {
             busesRepository.deleteById(id);
             return true;

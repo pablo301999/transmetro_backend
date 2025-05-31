@@ -17,11 +17,11 @@ public interface ParqueosSvc {
 
     List<Parqueos> obtenerTodos();
 
-    Optional<Parqueos> obtenerPorId(Integer id);
+    Optional<Parqueos> obtenerPorId(Long id);
 
     Parqueos crear(Parqueos parqueo);
 
-    Optional<Parqueos> actualizar(Integer id, Parqueos datos);
+    Optional<Parqueos> actualizar(Long id, Parqueos datos);
 
-    boolean eliminar(Integer id);
+    boolean eliminar(Long id);
 }

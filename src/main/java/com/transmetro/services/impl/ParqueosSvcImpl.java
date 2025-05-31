@@ -29,7 +29,7 @@ public class ParqueosSvcImpl implements ParqueosSvc {
     }
 
     @Override
-    public Optional<Parqueos> obtenerPorId(Integer id) {
+    public Optional<Parqueos> obtenerPorId(Long id) {
         return parqueosRepository.findById(id);
     }
 
@@ -39,17 +39,17 @@ public class ParqueosSvcImpl implements ParqueosSvc {
     }
 
     @Override
-    public Optional<Parqueos> actualizar(Integer id, Parqueos datos) {
+    public Optional<Parqueos> actualizar(Long id, Parqueos datos) {
         return parqueosRepository.findById(id).map(p -> {
-            p.setCodigo(datos.getCodigo());
-            p.setUbicacion(datos.getUbicacion());
-            p.setOcupado(datos.getOcupado());
+            p.setNombre(datos.getNombre());
+            p.setDireccion(datos.getDireccion());
+            p.setCapacidad(datos.getCapacidad());
             return parqueosRepository.save(p);
         });
     }
 
     @Override
-    public boolean eliminar(Integer id) {
+    public boolean eliminar(Long id) {
         if (parqueosRepository.existsById(id)) {
             parqueosRepository.deleteById(id);
             return true;

@@ -14,5 +14,5 @@ import org.springframework.stereotype.Repository;
  * @author Pablo
  */
 @Repository
-public interface BusesRepository extends JpaRepository<Buses, Integer> {
+public interface BusesRepository extends JpaRepository<Buses, Long> {
 }

@@ -17,11 +17,11 @@ public interface AccesosSvc {
 
     List<Accesos> obtenerTodos();
 
-    Optional<Accesos> obtenerPorId(Integer id);
+    Optional<Accesos> obtenerPorId(Long id);
 
     Accesos crear(Accesos acceso);
 
-    Optional<Accesos> actualizar(Integer id, Accesos datos);
+    Optional<Accesos> actualizar(Long id, Accesos datos);
 
-    boolean eliminar(Integer id);
+    boolean eliminar(Long id);
 }

@@ -38,7 +38,7 @@ public class LineasController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Lineas> obtenerPorId(@PathVariable Integer id) {
+    public ResponseEntity<Lineas> obtenerPorId(@PathVariable Long id) {
         return lineasSvc.obtenerPorId(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -50,14 +50,14 @@ public class LineasController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Lineas> actualizar(@PathVariable Integer id, @RequestBody Lineas datos) {
+    public ResponseEntity<Lineas> actualizar(@PathVariable Long id, @RequestBody Lineas datos) {
         return lineasSvc.actualizar(id, datos)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminar(@PathVariable Integer id) {
+    public ResponseEntity<?> eliminar(@PathVariable Long id) {
         return lineasSvc.eliminar(id) ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 }

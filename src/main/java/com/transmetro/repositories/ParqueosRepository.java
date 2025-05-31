@@ -14,5 +14,5 @@ import org.springframework.stereotype.Repository;
  * @author Pablo
  */
 @Repository
-public interface ParqueosRepository extends JpaRepository<Parqueos, Integer> {
+public interface ParqueosRepository extends JpaRepository<Parqueos, Long> {
 }

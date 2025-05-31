@@ -15,5 +15,5 @@ import org.springframework.stereotype.Repository;
  * @author Pablo
  */
 @Repository
-public interface LineasRepository extends JpaRepository<Lineas, Integer> {
+public interface LineasRepository extends JpaRepository<Lineas, Long> {
 }

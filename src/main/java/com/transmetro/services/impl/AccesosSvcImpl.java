@@ -29,7 +29,7 @@ public class AccesosSvcImpl implements AccesosSvc {
     }
 
     @Override
-    public Optional<Accesos> obtenerPorId(Integer id) {
+    public Optional<Accesos> obtenerPorId(Long id) {
         return accesosRepository.findById(id);
     }
 
@@ -39,7 +39,7 @@ public class AccesosSvcImpl implements AccesosSvc {
     }
 
     @Override
-    public Optional<Accesos> actualizar(Integer id, Accesos datos) {
+    public Optional<Accesos> actualizar(Long id, Accesos datos) {
         return accesosRepository.findById(id).map(a -> {
             a.setIdEstacion(datos.getIdEstacion());
             a.setDescripcion(datos.getDescripcion());
@@ -49,7 +49,7 @@ public class AccesosSvcImpl implements AccesosSvc {
     }
 
     @Override
-    public boolean eliminar(Integer id) {
+    public boolean eliminar(Long id) {
         if (accesosRepository.existsById(id)) {
             accesosRepository.deleteById(id);
             return true;

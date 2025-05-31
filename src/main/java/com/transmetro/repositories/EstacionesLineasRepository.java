@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
  * @author Pablo
  */
 @Repository
-public interface EstacionesLineasRepository extends JpaRepository<EstacionesLineas, Integer> {
+public interface EstacionesLineasRepository extends JpaRepository<EstacionesLineas, Long> {
 
     List<EstacionesLineas> findByIdLinea(Integer idLinea);
 }

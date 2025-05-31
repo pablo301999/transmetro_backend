@@ -38,7 +38,7 @@ public class ParqueosController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Parqueos> obtenerPorId(@PathVariable Integer id) {
+    public ResponseEntity<Parqueos> obtenerPorId(@PathVariable Long id) {
         return parqueosSvc.obtenerPorId(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -50,14 +50,14 @@ public class ParqueosController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Parqueos> actualizar(@PathVariable Integer id, @RequestBody Parqueos datos) {
+    public ResponseEntity<Parqueos> actualizar(@PathVariable Long id, @RequestBody Parqueos datos) {
         return parqueosSvc.actualizar(id, datos)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminar(@PathVariable Integer id) {
+    public ResponseEntity<?> eliminar(@PathVariable Long id) {
         return parqueosSvc.eliminar(id) ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 }

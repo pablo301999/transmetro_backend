@@ -38,7 +38,7 @@ public class GuardiasController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Guardias> obtenerPorId(@PathVariable Integer id) {
+    public ResponseEntity<Guardias> obtenerPorId(@PathVariable Long id) {
         return guardiasSvc.obtenerPorId(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -50,14 +50,14 @@ public class GuardiasController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Guardias> actualizar(@PathVariable Integer id, @RequestBody Guardias datos) {
+    public ResponseEntity<Guardias> actualizar(@PathVariable Long id, @RequestBody Guardias datos) {
         return guardiasSvc.actualizar(id, datos)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminar(@PathVariable Integer id) {
+    public ResponseEntity<?> eliminar(@PathVariable Long id) {
         return guardiasSvc.eliminar(id) ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 }

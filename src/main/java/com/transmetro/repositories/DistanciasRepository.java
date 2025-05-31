@@ -14,5 +14,5 @@ import org.springframework.stereotype.Repository;
  * @author Pablo
  */
 @Repository
-public interface DistanciasRepository extends JpaRepository<Distancias, Integer> {
+public interface DistanciasRepository extends JpaRepository<Distancias, Long> {
 }

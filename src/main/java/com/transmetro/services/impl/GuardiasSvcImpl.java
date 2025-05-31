@@ -29,7 +29,7 @@ public class GuardiasSvcImpl implements GuardiasSvc {
     }
 
     @Override
-    public Optional<Guardias> obtenerPorId(Integer id) {
+    public Optional<Guardias> obtenerPorId(Long id) {
         return guardiasRepository.findById(id);
     }
 
@@ -39,7 +39,7 @@ public class GuardiasSvcImpl implements GuardiasSvc {
     }
 
     @Override
-    public Optional<Guardias> actualizar(Integer id, Guardias datos) {
+    public Optional<Guardias> actualizar(Long id, Guardias datos) {
         return guardiasRepository.findById(id).map(g -> {
             g.setNombreCompleto(datos.getNombreCompleto());
             g.setIdAcceso(datos.getIdAcceso());
@@ -49,7 +49,7 @@ public class GuardiasSvcImpl implements GuardiasSvc {
     }
 
     @Override
-    public boolean eliminar(Integer id) {
+    public boolean eliminar(Long id) {
         if (guardiasRepository.existsById(id)) {
             guardiasRepository.deleteById(id);
             return true;

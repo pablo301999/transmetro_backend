@@ -17,11 +17,11 @@ public interface EstacionesSvc {
 
     List<Estaciones> obtenerTodas();
 
-    Optional<Estaciones> obtenerPorId(Integer id);
+    Optional<Estaciones> obtenerPorId(Long id);
 
     Estaciones crear(Estaciones estacion);
 
-    Optional<Estaciones> actualizar(Integer id, Estaciones datos);
+    Optional<Estaciones> actualizar(Long id, Estaciones datos);
 
-    boolean eliminar(Integer id);
+    boolean eliminar(Long id);
 }

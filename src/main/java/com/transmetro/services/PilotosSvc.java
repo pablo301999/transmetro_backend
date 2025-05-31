@@ -17,11 +17,11 @@ public interface PilotosSvc {
 
     List<Pilotos> obtenerTodos();
 
-    Optional<Pilotos> obtenerPorId(Integer id);
+    Optional<Pilotos> obtenerPorId(Long id);
 
     Pilotos crear(Pilotos piloto);
 
-    Optional<Pilotos> actualizar(Integer id, Pilotos datos);
+    Optional<Pilotos> actualizar(Long id, Pilotos datos);
 
-    boolean eliminar(Integer id);
+    boolean eliminar(Long id);
 }

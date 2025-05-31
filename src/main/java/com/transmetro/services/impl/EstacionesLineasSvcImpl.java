@@ -29,7 +29,7 @@ public class EstacionesLineasSvcImpl implements EstacionesLineasSvc {
     }
 
     @Override
-    public Optional<EstacionesLineas> obtenerPorId(Integer id) {
+    public Optional<EstacionesLineas> obtenerPorId(Long id) {
         return estacionesLineasRepository.findById(id);
     }
 
@@ -39,7 +39,7 @@ public class EstacionesLineasSvcImpl implements EstacionesLineasSvc {
     }
 
     @Override
-    public Optional<EstacionesLineas> actualizar(Integer id, EstacionesLineas datos) {
+    public Optional<EstacionesLineas> actualizar(Long id, EstacionesLineas datos) {
         return estacionesLineasRepository.findById(id).map(r -> {
             r.setIdEstacion(datos.getIdEstacion());
             r.setIdLinea(datos.getIdLinea());
@@ -49,7 +49,7 @@ public class EstacionesLineasSvcImpl implements EstacionesLineasSvc {
     }
 
     @Override
-    public boolean eliminar(Integer id) {
+    public boolean eliminar(Long id) {
         if (estacionesLineasRepository.existsById(id)) {
             estacionesLineasRepository.deleteById(id);
             return true;

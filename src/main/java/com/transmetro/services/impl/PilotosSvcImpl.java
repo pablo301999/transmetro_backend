@@ -29,7 +29,7 @@ public class PilotosSvcImpl implements PilotosSvc {
     }
 
     @Override
-    public Optional<Pilotos> obtenerPorId(Integer id) {
+    public Optional<Pilotos> obtenerPorId(Long id) {
         return pilotosRepository.findById(id);
     }
 
@@ -39,19 +39,18 @@ public class PilotosSvcImpl implements PilotosSvc {
     }
 
     @Override
-    public Optional<Pilotos> actualizar(Integer id, Pilotos datos) {
+    public Optional<Pilotos> actualizar(Long id, Pilotos datos) {
         return pilotosRepository.findById(id).map(p -> {
-            p.setNombreCompleto(datos.getNombreCompleto());
-            p.setDireccion(datos.getDireccion());
+            p.setNombre(datos.getNombre());
+            p.setApellido(datos.getApellido());
             p.setTelefono(datos.getTelefono());
-            p.setEmail(datos.getEmail());
-            p.setHistorialEducativo(datos.getHistorialEducativo());
+            p.setLicencia(datos.getLicencia());
             return pilotosRepository.save(p);
         });
     }
 
     @Override
-    public boolean eliminar(Integer id) {
+    public boolean eliminar(Long id) {
         if (pilotosRepository.existsById(id)) {
             pilotosRepository.deleteById(id);
             return true;

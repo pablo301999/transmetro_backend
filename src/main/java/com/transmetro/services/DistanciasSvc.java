@@ -17,11 +17,11 @@ public interface DistanciasSvc {
 
     List<Distancias> obtenerTodas();
 
-    Optional<Distancias> obtenerPorId(Integer id);
+    Optional<Distancias> obtenerPorId(Long id);
 
     Distancias crear(Distancias distancia);
 
-    Optional<Distancias> actualizar(Integer id, Distancias datos);
+    Optional<Distancias> actualizar(Long id, Distancias datos);
 
-    boolean eliminar(Integer id);
+    boolean eliminar(Long id);
 }

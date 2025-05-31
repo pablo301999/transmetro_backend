@@ -38,7 +38,7 @@ public class DistanciasController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Distancias> obtenerPorId(@PathVariable Integer id) {
+    public ResponseEntity<Distancias> obtenerPorId(@PathVariable Long id) {
         return distanciasSvc.obtenerPorId(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -50,14 +50,14 @@ public class DistanciasController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Distancias> actualizar(@PathVariable Integer id, @RequestBody Distancias datos) {
+    public ResponseEntity<Distancias> actualizar(@PathVariable Long id, @RequestBody Distancias datos) {
         return distanciasSvc.actualizar(id, datos)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminar(@PathVariable Integer id) {
+    public ResponseEntity<?> eliminar(@PathVariable Long id) {
         return distanciasSvc.eliminar(id) ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 }

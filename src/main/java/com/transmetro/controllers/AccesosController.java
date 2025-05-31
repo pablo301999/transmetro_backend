@@ -38,7 +38,7 @@ public class AccesosController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Accesos> obtenerPorId(@PathVariable Integer id) {
+    public ResponseEntity<Accesos> obtenerPorId(@PathVariable Long id) {
         return accesosSvc.obtenerPorId(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -50,14 +50,14 @@ public class AccesosController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Accesos> actualizar(@PathVariable Integer id, @RequestBody Accesos datos) {
+    public ResponseEntity<Accesos> actualizar(@PathVariable Long id, @RequestBody Accesos datos) {
         return accesosSvc.actualizar(id, datos)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminar(@PathVariable Integer id) {
+    public ResponseEntity<?> eliminar(@PathVariable Long id) {
         return accesosSvc.eliminar(id) ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 }

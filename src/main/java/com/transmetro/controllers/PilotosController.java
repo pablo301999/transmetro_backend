@@ -38,7 +38,7 @@ public class PilotosController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pilotos> obtenerPorId(@PathVariable Integer id) {
+    public ResponseEntity<Pilotos> obtenerPorId(@PathVariable Long id) {
         return pilotosSvc.obtenerPorId(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -50,14 +50,14 @@ public class PilotosController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Pilotos> actualizar(@PathVariable Integer id, @RequestBody Pilotos datos) {
+    public ResponseEntity<Pilotos> actualizar(@PathVariable Long id, @RequestBody Pilotos datos) {
         return pilotosSvc.actualizar(id, datos)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminar(@PathVariable Integer id) {
+    public ResponseEntity<?> eliminar(@PathVariable Long id) {
         return pilotosSvc.eliminar(id) ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 }

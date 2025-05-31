@@ -26,13 +26,14 @@ public class Pilotos implements Serializable {
     @Column(name = "id_piloto")
     private Long idPiloto;
 
-    @Column(name = "nombre_completo", nullable = false, length = 100)
-    private String nombreCompleto;
+    @Column(name = "nombre", nullable = false, length = 100)
+    private String nombre;
 
-    private String direccion;
+    @Column(name = "apellido", nullable = false, length = 100)
+    private String apellido;
+
     private String telefono;
-    private String email;
-    private String historialEducativo;
+    private String licencia;
 
     public Long getIdPiloto() {
         return idPiloto;
@@ -42,20 +43,20 @@ public class Pilotos implements Serializable {
         this.idPiloto = idPiloto;
     }
 
-    public String getNombreCompleto() {
-        return nombreCompleto;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getTelefono() {
@@ -66,20 +67,13 @@ public class Pilotos implements Serializable {
         this.telefono = telefono;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLicencia() {
+        return licencia;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLicencia(String licencia) {
+        this.licencia = licencia;
     }
 
-    public String getHistorialEducativo() {
-        return historialEducativo;
-    }
-
-    public void setHistorialEducativo(String historialEducativo) {
-        this.historialEducativo = historialEducativo;
-    }
-
+   
 }

@@ -29,7 +29,7 @@ public class LineasSvcImpl implements LineasSvc {
     }
 
     @Override
-    public Optional<Lineas> obtenerPorId(Integer id) {
+    public Optional<Lineas> obtenerPorId(Long id) {
         return lineasRepository.findById(id);
     }
 
@@ -39,7 +39,7 @@ public class LineasSvcImpl implements LineasSvc {
     }
 
     @Override
-    public Optional<Lineas> actualizar(Integer id, Lineas datos) {
+    public Optional<Lineas> actualizar(Long id, Lineas datos) {
         return lineasRepository.findById(id).map(l -> {
             l.setNombre(datos.getNombre());
             l.setZonaOrigen(datos.getZonaOrigen());
@@ -50,7 +50,7 @@ public class LineasSvcImpl implements LineasSvc {
     }
 
     @Override
-    public boolean eliminar(Integer id) {
+    public boolean eliminar(Long id) {
         if (lineasRepository.existsById(id)) {
             lineasRepository.deleteById(id);
             return true;

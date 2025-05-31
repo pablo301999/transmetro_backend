@@ -17,11 +17,11 @@ public interface LineasSvc {
 
     List<Lineas> obtenerTodas();
 
-    Optional<Lineas> obtenerPorId(Integer id);
+    Optional<Lineas> obtenerPorId(Long id);
 
     Lineas crear(Lineas linea);
 
-    Optional<Lineas> actualizar(Integer id, Lineas datos);
+    Optional<Lineas> actualizar(Long id, Lineas datos);
 
-    boolean eliminar(Integer id);
+    boolean eliminar(Long id);
 }

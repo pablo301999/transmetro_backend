@@ -26,6 +26,12 @@ public class Parqueos implements Serializable {
     @Column(name = "id_parqueo")
     private Long idParqueo;
 
+    private String direccion;
+
+    private String nombre;
+
+    private Integer capacidad;
+
     public Long getIdParqueo() {
         return idParqueo;
     }
@@ -34,36 +40,28 @@ public class Parqueos implements Serializable {
         this.idParqueo = idParqueo;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public String getUbicacion() {
-        return ubicacion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public Boolean getOcupado() {
-        return ocupado;
+    public Integer getCapacidad() {
+        return capacidad;
     }
 
-    public void setOcupado(Boolean ocupado) {
-        this.ocupado = ocupado;
+    public void setCapacidad(Integer capacidad) {
+        this.capacidad = capacidad;
     }
-
-    @Column(length = 20, unique = true, nullable = false)
-    private String codigo;
-
-    private String ubicacion;
-
-    private Boolean ocupado = false;
-    
     
 }

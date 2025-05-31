@@ -17,11 +17,11 @@ public interface GuardiasSvc {
 
     List<Guardias> obtenerTodos();
 
-    Optional<Guardias> obtenerPorId(Integer id);
+    Optional<Guardias> obtenerPorId(Long id);
 
     Guardias crear(Guardias guardia);
 
-    Optional<Guardias> actualizar(Integer id, Guardias datos);
+    Optional<Guardias> actualizar(Long id, Guardias datos);
 
-    boolean eliminar(Integer id);
+    boolean eliminar(Long id);
 }
